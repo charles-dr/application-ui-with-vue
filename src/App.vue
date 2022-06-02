@@ -1,7 +1,6 @@
 <script setup>
-import { onMounted, watch, watchEffect } from "vue";
+import { onMounted, watch } from "vue";
 import { darkTheme } from "naive-ui";
-import MainMenu from "@/components/MainMenu.vue";
 import TopBar from '@/components/TopBar.vue';
 import CommandPalette from "@/components/global_search/CommandPalette.vue";
 import { useGlobalState } from "@/store/global";
