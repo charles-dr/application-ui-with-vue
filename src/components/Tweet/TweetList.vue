@@ -1,6 +1,9 @@
 <script setup>
+import axios from "axios";
+import { useQuery } from "vue-query";
 import TweetItem from './TweetItem.vue';
-const tweets = [
+
+const dummyTweets = [
   {
     username: 'firstuser',
     time: '11:33:22 AM',
@@ -20,6 +23,10 @@ const tweets = [
     link: 'https://tweeter.com/someid',
   },
 ];
+const { data: tweets, isLoading: isLoadingTweets } = useQuery(
+  ["tweets"],
+  ({ queryKey }) => axios.get("https://jsonplaceholder.typicode.com/todos/1").then((res) => dummyTweets)
+);
 </script>
 <template>
   <n-table
@@ -34,12 +41,16 @@ const tweets = [
       </tr>
     </thead>
     <tbody>
+      <tr v-if="isLoadingTweets">
+        <td span="3">Loading Data...</td>
+      </tr>
       <TweetItem
+        v-if="!isLoadingTweets"
         v-for="tweet in tweets"
         :key="tweet.username + tweet.time"
         v-bind="tweet"
       />
-      <tr>
+      <tr v-if="!isLoadingTweets">
         <td>
           <n-avatar round size="medium" src="/images/avatar.png" />
         </td>
