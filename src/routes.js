@@ -32,6 +32,7 @@ const BuyerHome = () => import("@/components/buyer/BuyerHome.vue");
 const NotFound = () => import("@/views/NotFound.vue");
 const OAuth = () => import("@/views/OAuth.vue");
 import Components from "@/views/_refactor/Components.vue";
+const Settings = () => import('@/views/Settings.vue');
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -40,6 +41,11 @@ export const router = createRouter({
       path: "/",
       name: "Dashboard",
       component: Dashboard,
+    },
+    {
+      path: '/settings',
+      name: 'Settings',
+      component: Settings,
     },
     {
       path: "/login",

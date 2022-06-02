@@ -1,9 +1,12 @@
 <script setup>
 import useCommandPalletStore from "@/store/commandPallet";
 import { useGlobalState } from "../store/global";
+import { useRoute, useRouter } from "vue-router";
 
 const global = useGlobalState();
 const commandPallet = useCommandPalletStore();
+const router = useRouter();
+const route = useRoute();
 </script>
 <template>
   <div class="topbar flex items-center justify-between px-6 py-4 bg-background_light dark:!bg-background_dark">
@@ -14,8 +17,16 @@ const commandPallet = useCommandPalletStore();
       class="topbar__menu-wrapper flex justify-start"
       :class="'w-[calc(100vw-300px)]'"
     >
-      <div class="topbar__menu-item">Dashboard</div>
-      <div class="topbar__menu-item">Settings</div>
+      <div class="topbar__menu-item">
+        <n-button quaternary :type="route.path==='/' ? 'success' : 'tertiary'" @click="router.replace('/')">
+          Dashboard
+        </n-button>
+      </div>
+      <div class="topbar__menu-item" @click="router.replace('/settings')">
+        <n-button quaternary :type="route.path==='/settings' ? 'success' : 'tertiary'">
+          Settings
+        </n-button>
+      </div>
     </div>
     <div class="w-[200px] flex items-center">
       <img
