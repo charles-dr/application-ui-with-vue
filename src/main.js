@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin.js";
 import VueTippy from "vue-tippy";
 import axios from "axios";
-import App from "./App2.vue";
+import App from "./App.vue";
 import naive from "naive-ui";
 import { gsap } from "gsap";
 import "./scss/index.scss";

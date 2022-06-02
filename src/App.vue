@@ -2,6 +2,7 @@
 import { onMounted, watch, watchEffect } from "vue";
 import { darkTheme } from "naive-ui";
 import MainMenu from "@/components/MainMenu.vue";
+import TopBar from '@/components/TopBar.vue';
 import CommandPalette from "@/components/global_search/CommandPalette.vue";
 import { useGlobalState } from "@/store/global";
 import useAuth from "./store/auth";
@@ -115,12 +116,20 @@ watch(
   () => auth.isLoading,
   (isLoading) => {
     if (!isLoading) {
-      if (auth.user && route.path === "/login") {
+      if (auth.user && route.path === "/login") {console.log('[pass] here')
         router.replace("/");
       }
     }
   }
 );
+console.log('[isDark] initial', global.isDark);
+global.setDark(true);
+watch(
+  () => global.isDark,
+  (isDark) => {
+    console.log('[isDark]', isDark);
+  }
+)
 
 const onEnterTransition = (el, done) => {
   gsap.from(el, {
@@ -150,7 +159,7 @@ const onLeaveTransition = (el, done) => {
         <n-notification-provider>
           <n-dialog-provider>
             <section
-              class="fill-screen relative flex overflow-hidden bg-background_light dark:!bg-background_dark"
+              class="fill-screen overflow-y-auto relative overflow-hidden bg-background_light dark:!bg-background_dark"
             >
               <CommandPalette
                 v-if="
@@ -158,12 +167,7 @@ const onLeaveTransition = (el, done) => {
                   !auth.isLoading
                 "
               />
-              <MainMenu
-                v-if="
-                  !dontShowMenu.some((path) => $route.path.includes(path)) &&
-                  !auth.isLoading
-                "
-              />
+              <TopBar />
               <transition @enter="onEnterTransition" @leave="onLeaveTransition">
                 <initial-load v-if="auth.isLoading" />
               </transition>
