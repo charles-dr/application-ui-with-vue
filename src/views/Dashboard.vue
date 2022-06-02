@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import Toggle from '@/components/_refactor/Toggle.vue';
 import TweetList from '@/components/Tweet/TweetList.vue';
+import AddAccountForm from '@/components/Tweet/AddAccountForm.vue';
 
 const options = ref({
   botScanRate: {
@@ -56,7 +57,7 @@ const options = ref({
           <TweetList />
         </div>
         <div class="w-1/3 pl-2">
-          tweet form
+          <AddAccountForm />
         </div>
       </div>
     </div>

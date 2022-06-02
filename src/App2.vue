@@ -159,7 +159,7 @@ const onLeaveTransition = (el, done) => {
         <n-notification-provider>
           <n-dialog-provider>
             <section
-              class="fill-screen relative overflow-hidden bg-background_light dark:!bg-background_dark"
+              class="fill-screen overflow-y-auto relative overflow-hidden bg-background_light dark:!bg-background_dark"
             >
               <CommandPalette
                 v-if="
