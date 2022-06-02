@@ -1,0 +1,18 @@
+// ---- colors ----
+
+$primary: "#027BFF"; // blue
+$accent: "#027BFF0C"; // faint blue
+$success: "#36AD6A"; // green
+$error: "#DC2626"; // red
+$foreground_light: "#FFFFFF"; // white
+$background_light: "#EAECEF"; // light gray
+$foreground_dark: "#2D2F33"; // gray
+$background_dark: "#1E2023"; // dark gray
+
+
+// ---- easing ----
+
+$quint: cubic-bezier(0.22, 1, 0.36, 1);
+$circ: cubic-bezier(0, 0.55, 0.45, 1);
+$overshoot: cubic-bezier(0.34, 1.56, 0.64, 1);
+$elastic: cubic-bezier(0.68, -0.6, 0.32, 1.6);

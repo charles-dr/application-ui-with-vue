@@ -1,0 +1,11 @@
+node_modules/
+local_notes/
+.DS_Store
+dist/
+dist-ssr
+*.local
+notes.txt
+yarn.lock
+npm-debug.log
+yarn-error.log
+.idea/
