@@ -1,6 +1,11 @@
 <script setup>
 import { ref } from 'vue';
+import { useMutation, useQueryClient } from "vue-query";
+import axios from 'axios';
+import { useMessage } from "naive-ui";
 
+const message = useMessage();
+const queryClient = useQueryClient();
 const formRef = ref(null);
 const model = ref({
   username: '',
@@ -12,14 +17,26 @@ const model = ref({
 });
 const rules = ref({
   username: [{ required: true }],
-  url: [{ required: true }],
-  webhook: [{ required: true }],
+  // url: [{ required: true }],
+  // webhook: [{ required: true }],
 })
+const { mutate: addUserReq } = useMutation(
+  (data) => axios.post("https://jsonplaceholder.typicode.com/postss", data),
+  {
+    onSuccess() {
+      message.success("User Created Successfully");
+      queryClient.invalidateQueries("tweets");
+    },
+    onError(error, variables, context) {
+      message.error('Failed to create user!');
+      console.log('[Create User] error', error);
+    }
+  }
+);
 const handleOnSubmit = () => {
   formRef.value?.validate(errors => {
     if (errors) return;
-    // TODO: describe form submit action here.
-    console.log('[model]', model.value);
+    addUserReq(model.value);
   });
 }
 </script>
